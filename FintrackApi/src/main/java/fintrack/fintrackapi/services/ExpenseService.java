@@ -2,7 +2,7 @@ package fintrack.fintrackapi.services;
 
 import fintrack.fintrackapi.interfaces.IExpenseService;
 import fintrack.fintrackapi.models.Expense;
-import fintrack.fintrackapi.repositories.ExpenseRepository;
+import fintrack.fintrackapi.repositories.IExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +12,31 @@ import java.util.Optional;
 @Service
 public class ExpenseService implements IExpenseService {
 
-    private final ExpenseRepository expenseRepository;
+    private final IExpenseRepository IExpenseRepository;
 
     @Autowired
-    public ExpenseService(ExpenseRepository expenseRepository) {
-        this.expenseRepository = expenseRepository;
+    public ExpenseService(IExpenseRepository IExpenseRepository) {
+        this.IExpenseRepository = IExpenseRepository;
     }
 
     @Override
     public Expense saveExpense(Expense expense) {
-        return expenseRepository.save(expense);
+        return IExpenseRepository.save(expense);
     }
 
     @Override
     public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
+        return IExpenseRepository.findAll();
     }
 
     @Override
     public Expense getExpenseById(Long id) {
-        Optional<Expense> optionalExpense = expenseRepository.findById(id);
+        Optional<Expense> optionalExpense = IExpenseRepository.findById(id);
         return optionalExpense.orElse(null);
     }
 
     @Override
     public void deleteExpense(Long id) {
-        expenseRepository.deleteById(id);
+        IExpenseRepository.deleteById(id);
     }
 }
