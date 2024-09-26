@@ -1,4 +1,6 @@
-package expenses;
+package fintrack.fintrackapi.interfaces;
+
+import fintrack.fintrackapi.models.Expense;
 
 import java.util.List;
 

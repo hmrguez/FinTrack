@@ -1,5 +1,8 @@
-package expenses;
+package fintrack.fintrackapi.services;
 
+import fintrack.fintrackapi.interfaces.IExpenseService;
+import fintrack.fintrackapi.models.Expense;
+import fintrack.fintrackapi.repositories.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package expenses;
+package fintrack.fintrackapi.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;

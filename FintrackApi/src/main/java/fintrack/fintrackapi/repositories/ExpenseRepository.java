@@ -1,5 +1,6 @@
-package expenses;
+package fintrack.fintrackapi.repositories;
 
+import fintrack.fintrackapi.models.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

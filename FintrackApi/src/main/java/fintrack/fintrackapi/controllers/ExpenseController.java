@@ -1,5 +1,7 @@
-package expenses;
+package fintrack.fintrackapi.controllers;
 
+import fintrack.fintrackapi.services.ExpenseService;
+import fintrack.fintrackapi.models.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
