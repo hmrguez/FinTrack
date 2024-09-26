@@ -1,5 +1,7 @@
 package fintrack.fintrackapi.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import fintrack.fintrackapi.models.User;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -23,7 +25,13 @@ public class Expense {
     @Column(nullable = false)
     private Double amount;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
+
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -62,5 +70,13 @@ public class Expense {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
