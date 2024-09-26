@@ -5,6 +5,7 @@ import fintrack.fintrackapi.models.Expense;
 import fintrack.fintrackapi.models.User;
 import fintrack.fintrackapi.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +15,18 @@ import java.util.Optional;
 public class UserService implements IUserService {
 
     private final IUserRepository IUserRepository;
+    private final PasswordEncoder passwordEncoder; // Inject PasswordEncoder
+
 
     @Autowired
-    public UserService(IUserRepository IUserRepository) {
-        this.IUserRepository = IUserRepository;
+    public UserService(IUserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.IUserRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return IUserRepository.save(user);
     }
 
@@ -39,6 +44,11 @@ public class UserService implements IUserService {
     @Override
     public void deleteUser(Long id) {
         IUserRepository.deleteById(id);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        return IUserRepository.findByEmail(email);
     }
 
     @Override
