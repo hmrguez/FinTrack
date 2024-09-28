@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import AppButton from "@/components/AppButton";
+import {useRouter} from "expo-router";
 
 const SignIn = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+
+	const router = useRouter();
+
 
 	const handleSignIn = () => {
 		// Handle sign-in logic here
@@ -47,7 +52,7 @@ const SignIn = () => {
 
 			<View style={styles.signUpContainer}>
 				<Text style={styles.signUpText}>Don't have an account?</Text>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => router.push("/sign-up")}>
 					<Text style={styles.signUpLink}> Sign Up</Text>
 				</TouchableOpacity>
 			</View>
