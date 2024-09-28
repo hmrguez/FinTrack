@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import AppButton from "@/components/AppButton";
 
 const SignIn = () => {
 	const [email, setEmail] = useState('');
@@ -42,9 +43,7 @@ const SignIn = () => {
 				<Text style={styles.forgotPasswordText}>Forgot Password?</Text>
 			</TouchableOpacity>
 
-			<TouchableOpacity style={styles.button} onPress={handleSignIn}>
-				<Text style={styles.buttonText}>Sign In</Text>
-			</TouchableOpacity>
+			<AppButton title={"Sign In"} onPress={handleSignIn}/>
 
 			<View style={styles.signUpContainer}>
 				<Text style={styles.signUpText}>Don't have an account?</Text>

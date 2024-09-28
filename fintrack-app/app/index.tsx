@@ -1,18 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import {Link} from "expo-router";
+import {Image, StyleSheet, Text, View} from 'react-native';
+import {useRouter} from "expo-router";
+import AppButton from "@/components/AppButton";
 
 const LandingPage = () => {
+
+	const router = useRouter();
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
 				<Text style={styles.title}>FinanceBuddy</Text>
 				<Text style={styles.subtitle}>Manage your finances effortlessly</Text>
 			</View>
-			<Image source={require('../assets/images/lofi-illustration.webp')} style={styles.image} />
-			<Link href="/sign-in" style={styles.button}>
-				<Text style={styles.buttonText}>Get Started</Text>
-			</Link>
+			<Image source={require('../assets/images/lofi-illustration.webp')} style={styles.image}/>
+			<AppButton style={styles} title="Get Started" onPress={() => {
+				router.push("/sign-in")
+			}}/>
 		</View>
 	);
 };
@@ -20,6 +24,9 @@ const LandingPage = () => {
 export default LandingPage;
 
 const styles = StyleSheet.create({
+	// buttonapp: {
+	// 	width: 400,
+	// },
 	container: {
 		flex: 1,
 		backgroundColor: '#F0EBF8', // Pastel background color
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 60,
 		borderRadius: 30,
 		shadowColor: '#000', // Shadow for depth
-		shadowOffset: { width: 0, height: 5 },
+		shadowOffset: {width: 0, height: 5},
 		shadowOpacity: 0.1,
 		shadowRadius: 10,
 		elevation: 5, // For Android shadow
