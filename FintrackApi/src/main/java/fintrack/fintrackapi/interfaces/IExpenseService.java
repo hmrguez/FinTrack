@@ -11,5 +11,7 @@ public interface IExpenseService {
 
     Expense getExpenseById(Long id);
 
+    List<Expense> getExpensesByUserId(Long userId);
+
     void deleteExpense(Long id);
 }

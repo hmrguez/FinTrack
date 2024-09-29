@@ -16,7 +16,7 @@ public class JwtTokenUtil {
     public String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
-                .setIssuer("YourAppName")
+                .setIssuer("Fintrack")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(key)

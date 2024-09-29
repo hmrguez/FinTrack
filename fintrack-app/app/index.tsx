@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {useRouter} from "expo-router";
 import AppButton from "@/components/AppButton";
+import {getUserId} from "@/services/auth.service";
+
 
 const LandingPage = () => {
 
 	const router = useRouter();
+
+	useEffect(() => {
+		const checkUserLoggedIn = async () => {
+			const userId = await getUserId();
+			if (userId) {
+				router.replace("/expenses");
+			}
+		};
+
+		checkUserLoggedIn();
+	}, []);
 
 	return (
 		<View style={styles.container}>

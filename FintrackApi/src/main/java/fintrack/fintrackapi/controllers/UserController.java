@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:8081")
 public class UserController {
 
     private final IUserService userService;
@@ -73,7 +74,7 @@ public class UserController {
         User user = userService.getByEmail(loginRequest.getEmail());
         if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             String token = jwtTokenUtil.generateToken(user.getEmail());
-            return ResponseEntity.ok(new AuthResponse(token));
+            return ResponseEntity.ok(new AuthResponse(token, user.getId()));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import AppButton from "@/components/AppButton";
 import {useRouter} from "expo-router";
-import {signIn} from "@/services/auth.service";
+import {getUserId, isLoggedIn, signIn} from "@/services/auth.service";
 import ToastService from "@/services/toast.service";
 
 const SignIn = () => {
@@ -10,6 +10,17 @@ const SignIn = () => {
 	const [password, setPassword] = useState('');
 
 	const router = useRouter();
+
+	useEffect(() => {
+		const checkUserLoggedIn = async () => {
+			const loggedIn = await isLoggedIn();
+			if (loggedIn) {
+				router.replace("/expenses");
+			}
+		};
+
+		checkUserLoggedIn();
+	}, []);
 
 	const handleSignIn = async () => {
 

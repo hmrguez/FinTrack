@@ -39,4 +39,9 @@ public class ExpenseService implements IExpenseService {
     public void deleteExpense(Long id) {
         IExpenseRepository.deleteById(id);
     }
+
+    @Override
+    public List<Expense> getExpensesByUserId(Long userId) {
+        return IExpenseRepository.findByUserId(userId);
+    }
 }
