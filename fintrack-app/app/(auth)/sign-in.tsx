@@ -15,6 +15,7 @@ const SignIn = () => {
 
 		try {
 			await signIn(email, password);
+			router.push("/expenses");
 		} catch (error) {
 			ToastService.show('Invalid credentials', 'error');
 		}
