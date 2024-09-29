@@ -33,6 +33,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
+        user.setBalance(0d);
         User createdUser = userService.saveUser(user);
         return ResponseEntity.ok(createdUser);
     }

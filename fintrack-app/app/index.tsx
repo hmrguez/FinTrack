@@ -24,9 +24,6 @@ const LandingPage = () => {
 export default LandingPage;
 
 const styles = StyleSheet.create({
-	// buttonapp: {
-	// 	width: 400,
-	// },
 	container: {
 		flex: 1,
 		backgroundColor: '#F0EBF8', // Pastel background color

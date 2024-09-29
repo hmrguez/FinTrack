@@ -1,6 +1,6 @@
 // screens/SignUp.js
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
 	View,
 	Text,
@@ -18,6 +18,9 @@ import {
 	BORDER_RADIUS,
 } from '@/constants/Constants';
 import {router, useRouter} from "expo-router";
+import {signUp} from '@/services/auth.service';
+import ToastService from "@/services/toast.service";
+
 
 const SignUp = () => {
 	const [email, setEmail] = useState('');
@@ -27,12 +30,13 @@ const SignUp = () => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const router = useRouter();
 
-	const handleSignUp = () => {
+	const handleSignUp = async () => {
 		// Handle sign-up logic here
 		if (password === confirmPassword) {
-			// Proceed with sign-up
+			await signUp(email, password);
+			router.push("/sign-in");
 		} else {
-			// Show error: passwords do not match
+			ToastService.show('Passwords do not match!', 'error');
 		}
 	};
 
@@ -78,7 +82,7 @@ const SignUp = () => {
 				/>
 			</View>
 
-			<AppButton title="Sign Up" onPress={handleSignUp} />
+			<AppButton title="Sign Up" onPress={handleSignUp}/>
 
 			<View style={styles.signInContainer}>
 				<Text style={styles.signInText}>Already have an account?</Text>
@@ -127,7 +131,7 @@ const styles = StyleSheet.create({
 		color: COLORS.text,
 		marginBottom: SPACING.small,
 		shadowColor: '#000', // Shadow for depth
-		shadowOffset: { width: 0, height: 2 },
+		shadowOffset: {width: 0, height: 2},
 		shadowOpacity: 0.05,
 		shadowRadius: 5,
 		elevation: 2, // For Android shadow

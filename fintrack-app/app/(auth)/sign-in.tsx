@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import React, {useState} from 'react';
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import AppButton from "@/components/AppButton";
 import {useRouter} from "expo-router";
+import {signIn} from "@/services/auth.service";
+import ToastService from "@/services/toast.service";
 
 const SignIn = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-
 	const router = useRouter();
 
+	const handleSignIn = async () => {
 
-	const handleSignIn = () => {
-		// Handle sign-in logic here
+		try {
+			await signIn(email, password);
+		} catch (error) {
+			ToastService.show('Invalid credentials', 'error');
+		}
 	};
 
 	return (
 		<View style={styles.container}>
-			<Image source={require('../../assets/images/lofi-illustration.webp')} style={styles.image} />
+			<Image source={require('../../assets/images/lofi-illustration.webp')} style={styles.image}/>
 			<Text style={styles.title}>Welcome Back</Text>
 			<Text style={styles.subtitle}>Sign in to continue</Text>
 
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
 		color: '#3E3A66',
 		marginBottom: 15,
 		shadowColor: '#000', // Shadow for depth
-		shadowOffset: { width: 0, height: 2 },
+		shadowOffset: {width: 0, height: 2},
 		shadowOpacity: 0.05,
 		shadowRadius: 5,
 		elevation: 2, // For Android shadow
@@ -116,7 +121,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 80,
 		borderRadius: 30,
 		shadowColor: '#000', // Shadow for depth
-		shadowOffset: { width: 0, height: 5 },
+		shadowOffset: {width: 0, height: 5},
 		shadowOpacity: 0.1,
 		shadowRadius: 10,
 		elevation: 5, // For Android shadow

@@ -3,6 +3,7 @@ import React from 'react';
 
 import {SafeAreaView} from "react-native-safe-area-context";
 import {Text} from "react-native";
+import Toast from "@/components/Toast";
 
 export default function AuthLayout() {
 
@@ -12,6 +13,8 @@ export default function AuthLayout() {
 				{/*<Text>Auth Layout</Text>*/}
 				<Stack.Screen name="sign-in" options={{title: 'Sign In', headerShown: false}}/>
 				<Stack.Screen name="sign-up" options={{title: 'Sign Up', headerShown: false}}/>
+
+
 			</Stack>
 		</>
 	);

@@ -6,6 +6,7 @@ import {useEffect} from 'react';
 import 'react-native-reanimated';
 
 import {useColorScheme} from '@/hooks/useColorScheme';
+import Toast from "@/components/Toast";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,6 +33,8 @@ export default function RootLayout() {
 			<Stack>
 				<Stack.Screen name="index" options={{title: 'Landing Page', headerShown: false}}/>
 			</Stack>
+
+			<Toast />
 
 		</ThemeProvider>
 	);
